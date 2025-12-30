@@ -65,17 +65,21 @@ const AboutSection = () => {
         </div>
 
         {/* Fixed floating photos in bottom right */}
-        <div className="hidden lg:block fixed right-0 bottom-0 w-80 h-80 pointer-events-none">
+        <div className="fixed right-4 bottom-4 md:right-8 md:bottom-8 lg:right-12 lg:bottom-12 pointer-events-none z-50">
           {photos.map((photo, index) => (
             <motion.div
               key={index}
-              className={`absolute ${photo.position} ${photo.size}`}
-              style={{ opacity: photo.opacity }}
+              className={`absolute ${photo.size}`}
+              style={{ 
+                opacity: photo.opacity,
+                right: index === 0 ? '0' : index === 1 ? '60px' : '120px',
+                bottom: index === 0 ? '0' : index === 1 ? '80px' : '40px',
+              }}
             >
               <img 
                 src={photo.src} 
                 alt="" 
-                className="w-full h-auto grayscale opacity-80"
+                className="w-full h-auto grayscale"
               />
             </motion.div>
           ))}
