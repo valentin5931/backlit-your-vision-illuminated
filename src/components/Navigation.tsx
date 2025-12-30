@@ -27,12 +27,12 @@ const Navigation = () => {
 
         <LanguageSwitch />
 
-        <button
-          onClick={() => scrollTo('contact')}
+        <a
+          href="mailto:valentin@backlit-prod.com"
           className="nav-link text-sm font-body tracking-wide text-foreground/60 hover:text-foreground transition-colors"
         >
           {t.nav.contact}
-        </button>
+        </a>
       </div>
     </motion.nav>
   );
