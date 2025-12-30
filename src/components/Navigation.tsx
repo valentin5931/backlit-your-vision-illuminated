@@ -1,9 +1,14 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSwitch from './LanguageSwitch';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Navigation = () => {
   const { t } = useLanguage();
+  
+  const { scrollYProgress } = useScroll();
+  
+  // Fade out navigation when scrolling past the hero section
+  const navOpacity = useTransform(scrollYProgress, [0, 0.15, 0.2], [1, 1, 0]);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);
@@ -15,7 +20,8 @@ const Navigation = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, delay: 1.2 }}
-      className="fixed bottom-0 left-0 right-0 z-50 px-6 md:px-12 py-6"
+      style={{ opacity: navOpacity }}
+      className="fixed bottom-0 left-0 right-0 z-50 px-6 md:px-12 py-6 pointer-events-auto"
     >
       <div className="flex items-center justify-between">
         <button
