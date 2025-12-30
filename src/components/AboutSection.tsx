@@ -2,6 +2,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Gamepad2, Mail } from 'lucide-react';
+import photoCamera from '@/assets/photo-camera.jpg';
+import photoIsland from '@/assets/photo-island.jpg';
+import photoMicro from '@/assets/photo-micro.jpg';
 
 const AboutSection = () => {
   const { t, language } = useLanguage();
@@ -12,17 +15,15 @@ const AboutSection = () => {
     offset: ["start end", "end start"]
   });
 
-  // Transform for floating placeholder images
-  const image1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 0.6]);
-  const image2Opacity = useTransform(scrollYProgress, [0.25, 0.4], [0, 0.6]);
-  const image3Opacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 0.6]);
-  const image4Opacity = useTransform(scrollYProgress, [0.55, 0.7], [0, 0.6]);
+  // Transform for floating images
+  const image1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 0.7]);
+  const image2Opacity = useTransform(scrollYProgress, [0.25, 0.4], [0, 0.7]);
+  const image3Opacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 0.7]);
 
-  const placeholders = [
-    { opacity: image1Opacity, size: 'w-32 h-24', position: 'bottom-48 right-8' },
-    { opacity: image2Opacity, size: 'w-40 h-28', position: 'bottom-20 right-16' },
-    { opacity: image3Opacity, size: 'w-36 h-48', position: 'bottom-32 right-56' },
-    { opacity: image4Opacity, size: 'w-28 h-36', position: 'bottom-8 right-4' },
+  const photos = [
+    { src: photoCamera, opacity: image1Opacity, size: 'w-32', position: 'bottom-40 right-8' },
+    { src: photoIsland, opacity: image2Opacity, size: 'w-44', position: 'bottom-16 right-20' },
+    { src: photoMicro, opacity: image3Opacity, size: 'w-28', position: 'bottom-4 right-4' },
   ];
 
   return (
@@ -63,17 +64,19 @@ const AboutSection = () => {
           ))}
         </div>
 
-        {/* Fixed floating placeholder images in bottom right */}
-        <div className="hidden lg:block fixed right-0 bottom-0 w-96 h-96 pointer-events-none">
-          {placeholders.map((placeholder, index) => (
+        {/* Fixed floating photos in bottom right */}
+        <div className="hidden lg:block fixed right-0 bottom-0 w-80 h-80 pointer-events-none">
+          {photos.map((photo, index) => (
             <motion.div
               key={index}
-              className={`absolute ${placeholder.position} ${placeholder.size} bg-foreground/10 border border-foreground/20`}
-              style={{ opacity: placeholder.opacity }}
+              className={`absolute ${photo.position} ${photo.size}`}
+              style={{ opacity: photo.opacity }}
             >
-              <div className="w-full h-full flex items-center justify-center text-foreground/20 text-xs font-body">
-                photo {index + 1}
-              </div>
+              <img 
+                src={photo.src} 
+                alt="" 
+                className="w-full h-auto grayscale opacity-80"
+              />
             </motion.div>
           ))}
         </div>
