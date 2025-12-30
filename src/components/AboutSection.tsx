@@ -30,19 +30,21 @@ const AboutSection = () => {
     <section 
       ref={sectionRef}
       id="about" 
-      className="relative min-h-[200vh] pt-[50vh] pb-32 px-6 md:px-12 lg:px-24"
+      className="relative min-h-[200vh] pb-32 px-6 md:px-12 lg:px-24"
     >
-      <div className="relative">
-        {/* Title - aligned left */}
-        <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 1 }}
-          className="font-display text-3xl md:text-4xl mb-16 text-foreground/40 tracking-widest"
-        >
-          {t.about.title}
-        </motion.h2>
+      {/* Title - at the top of the section */}
+      <motion.h2
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: '-100px' }}
+        transition={{ duration: 1 }}
+        className="font-display text-3xl md:text-4xl text-foreground/40 tracking-widest pt-24"
+      >
+        {t.about.title}
+      </motion.h2>
+
+      {/* Content starts at mid-page */}
+      <div className="relative mt-[40vh]">
 
         {/* Magazine-style text layout - narrow left column (1/3) */}
         <div className="w-full md:w-1/3 space-y-6">
