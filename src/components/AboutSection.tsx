@@ -37,20 +37,20 @@ const AboutSection = () => {
       id="about" 
       className="relative min-h-[200vh] pt-[50vh] pb-32 px-6 md:px-12 lg:px-24"
     >
-      <div className="max-w-6xl mx-auto relative">
-        {/* Title */}
+      <div className="relative">
+        {/* Title - aligned left */}
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 1 }}
-          className="font-display text-4xl md:text-5xl mb-20 text-foreground/30 tracking-widest"
+          className="font-display text-3xl md:text-4xl mb-16 text-foreground/40 tracking-widest"
         >
           {t.about.title}
         </motion.h2>
 
-        {/* Magazine-style text layout */}
-        <div className="max-w-xl space-y-8">
+        {/* Magazine-style text layout - narrow left column (1/3) */}
+        <div className="w-full md:w-1/3 space-y-6">
           {t.about.blocks.map((block, index) => (
             <motion.p
               key={index}
@@ -58,10 +58,10 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: index * 0.05 }}
-              className={`font-body text-sm leading-relaxed ${
+              className={`font-body text-xs leading-relaxed ${
                 index === 1 || index === 6 || index === 12
-                  ? 'text-foreground/50 font-medium'
-                  : 'text-foreground/35'
+                  ? 'text-foreground/70 font-medium'
+                  : 'text-foreground/55'
               }`}
             >
               {block}
@@ -70,17 +70,21 @@ const AboutSection = () => {
         </div>
 
         {/* Floating images on the right */}
-        <div className="hidden lg:block absolute right-0 top-0 w-64 h-full pointer-events-none">
+        <div className="hidden lg:block fixed right-12 bottom-12 w-56 pointer-events-none">
           {images.map((img, index) => (
             <motion.div
               key={index}
-              className={`absolute right-0 ${img.offset} w-48`}
-              style={{ y: img.y, opacity: img.opacity }}
+              className="absolute right-0 bottom-0 w-48"
+              style={{ 
+                y: img.y, 
+                opacity: img.opacity,
+                transform: `translateY(${index * -120}px)`
+              }}
             >
               <img 
                 src={img.src} 
                 alt="" 
-                className="w-full h-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                className="w-full h-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500 pointer-events-auto"
               />
             </motion.div>
           ))}
@@ -88,8 +92,8 @@ const AboutSection = () => {
       </div>
 
       {/* Footer / Game Link */}
-      <div className="max-w-6xl mx-auto mt-32 pt-12 border-t border-foreground/10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="mt-32 pt-12 border-t border-foreground/10">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <p className="text-xs text-foreground/30 font-body">
             © {new Date().getFullYear()} BACKLIT
           </p>
