@@ -12,13 +12,13 @@ const AboutSection = () => {
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"]
+    offset: ["start start", "end end"]
   });
 
-  // Transform for floating images - staggered appearance
-  const image1Opacity = useTransform(scrollYProgress, [0.15, 0.25], [0, 1]);
-  const image2Opacity = useTransform(scrollYProgress, [0.30, 0.40], [0, 1]);
-  const image3Opacity = useTransform(scrollYProgress, [0.45, 0.55], [0, 1]);
+  // Transform for floating images - staggered appearance based on scroll
+  const image1Opacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1]);
+  const image2Opacity = useTransform(scrollYProgress, [0.35, 0.45], [0, 1]);
+  const image3Opacity = useTransform(scrollYProgress, [0.5, 0.6], [0, 1]);
 
   const photos = [
     { src: photoCamera, opacity: image1Opacity },
@@ -30,7 +30,7 @@ const AboutSection = () => {
     <section 
       ref={sectionRef}
       id="about" 
-      className="relative min-h-[200vh] pb-32 px-6 md:px-12 lg:px-24"
+      className="relative min-h-[250vh] pb-32 px-6 md:px-12 lg:px-24"
     >
       {/* Title - at the top of the section */}
       <motion.h2
@@ -43,11 +43,10 @@ const AboutSection = () => {
         {t.about.title}
       </motion.h2>
 
-      {/* Content starts at mid-page */}
-      <div className="relative mt-[40vh]">
-
-        {/* Magazine-style text layout - narrow left column (1/3) */}
-        <div className="w-full md:w-1/3 space-y-6">
+      {/* Content wrapper with sticky photos */}
+      <div className="relative mt-[40vh] flex flex-col md:flex-row">
+        {/* Magazine-style text layout - narrow left column */}
+        <div className="w-full md:w-1/2 space-y-6">
           {t.about.blocks.map((block, index) => (
             <motion.p
               key={index}
@@ -66,36 +65,29 @@ const AboutSection = () => {
           ))}
         </div>
 
-        {/* Mosaic photos - positioned within the section, above footer */}
-        <div className="absolute right-6 md:right-12 lg:right-24 bottom-48 pointer-events-none">
-          <div className="grid grid-cols-2 gap-2 w-48 md:w-64">
-            <motion.div
-              className="col-span-1"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8, delay: 0 }}
-            >
-              <img src={photos[0].src} alt="" className="w-full h-auto grayscale" />
-            </motion.div>
-            <motion.div
-              className="col-span-1 mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <img src={photos[1].src} alt="" className="w-full h-auto grayscale" />
-            </motion.div>
-            <motion.div
-              className="col-span-2 -mt-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <img src={photos[2].src} alt="" className="w-full h-auto grayscale" />
-            </motion.div>
+        {/* Sticky photos container - stays fixed while text scrolls */}
+        <div className="hidden md:block md:w-1/2">
+          <div className="sticky top-1/2 -translate-y-1/2 flex justify-end pr-6 lg:pr-12">
+            <div className="grid grid-cols-2 gap-2 w-48 md:w-64">
+              <motion.div
+                className="col-span-1"
+                style={{ opacity: photos[0].opacity }}
+              >
+                <img src={photos[0].src} alt="" className="w-full h-auto grayscale" />
+              </motion.div>
+              <motion.div
+                className="col-span-1 mt-8"
+                style={{ opacity: photos[1].opacity }}
+              >
+                <img src={photos[1].src} alt="" className="w-full h-auto grayscale" />
+              </motion.div>
+              <motion.div
+                className="col-span-2 -mt-4"
+                style={{ opacity: photos[2].opacity }}
+              >
+                <img src={photos[2].src} alt="" className="w-full h-auto grayscale" />
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
