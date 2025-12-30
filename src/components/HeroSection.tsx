@@ -1,5 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motion';
 import { useRef } from 'react';
 import backlitLogo from '@/assets/backlit-logo.png';
 
@@ -12,9 +12,10 @@ const HeroSection = () => {
     offset: ["start start", "end start"]
   });
 
-  // Transform scroll progress to opacity for glow effect
-  const glowOpacity = useTransform(scrollYProgress, [0, 0.5], [0.6, 1]);
-  const glowScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
+  // Transform scroll progress: full brightness at top, fades when scrolling down
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
+  const logoBrightness = useTransform(scrollYProgress, [0, 0.5], [0.85, 0.35]);
+  const logoFilter = useMotionTemplate`brightness(${logoBrightness}) saturate(0.85)`;
 
   return (
     <section 
@@ -22,22 +23,12 @@ const HeroSection = () => {
       id="hero" 
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-background"
     >
-      {/* Animated glow effect on scroll */}
-      <motion.div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] pointer-events-none"
-        style={{
-          opacity: glowOpacity,
-          scale: glowScale,
-          background: 'radial-gradient(ellipse at center, hsl(40 80% 50% / 0.15) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-      />
-
-      {/* Main content - Logo image */}
+      {/* Main content - Logo image with scroll-based fade */}
       <div className="relative z-10 w-full max-w-3xl px-4 flex flex-col items-center">
-        <div 
+        <motion.div 
           className="relative w-full"
           style={{
+            opacity: logoOpacity,
             maskImage: 'radial-gradient(ellipse 90% 80% at 50% 50%, black 40%, transparent 100%)',
             WebkitMaskImage: 'radial-gradient(ellipse 90% 80% at 50% 50%, black 40%, transparent 100%)',
           }}
@@ -46,11 +37,12 @@ const HeroSection = () => {
             src={backlitLogo}
             alt="BACKLIT"
             initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 0.75, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: 'easeOut' }}
-            className="w-full h-auto brightness-[0.55] saturate-[0.8]"
+            style={{ filter: logoFilter }}
+            className="w-full h-auto"
           />
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
