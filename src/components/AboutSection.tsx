@@ -21,9 +21,9 @@ const AboutSection = () => {
   const image3Opacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 0.7]);
 
   const photos = [
-    { src: photoCamera, opacity: image1Opacity, size: 'w-32', position: 'bottom-40 right-8' },
-    { src: photoIsland, opacity: image2Opacity, size: 'w-44', position: 'bottom-16 right-20' },
-    { src: photoMicro, opacity: image3Opacity, size: 'w-28', position: 'bottom-4 right-4' },
+    { src: photoCamera, opacity: image1Opacity },
+    { src: photoIsland, opacity: image2Opacity },
+    { src: photoMicro, opacity: image3Opacity },
   ];
 
   return (
@@ -64,25 +64,28 @@ const AboutSection = () => {
           ))}
         </div>
 
-        {/* Fixed floating photos in bottom right */}
-        <div className="fixed right-4 bottom-4 md:right-8 md:bottom-8 lg:right-12 lg:bottom-12 pointer-events-none z-50">
-          {photos.map((photo, index) => (
+        {/* Mosaic photos - positioned within the section, above footer */}
+        <div className="absolute right-6 md:right-12 lg:right-24 bottom-48 pointer-events-none">
+          <div className="grid grid-cols-2 gap-2 w-48 md:w-64">
             <motion.div
-              key={index}
-              className={`absolute ${photo.size}`}
-              style={{ 
-                opacity: photo.opacity,
-                right: index === 0 ? '0' : index === 1 ? '60px' : '120px',
-                bottom: index === 0 ? '0' : index === 1 ? '80px' : '40px',
-              }}
+              className="col-span-1"
+              style={{ opacity: photos[0].opacity }}
             >
-              <img 
-                src={photo.src} 
-                alt="" 
-                className="w-full h-auto grayscale"
-              />
+              <img src={photos[0].src} alt="" className="w-full h-auto grayscale" />
             </motion.div>
-          ))}
+            <motion.div
+              className="col-span-1 mt-8"
+              style={{ opacity: photos[1].opacity }}
+            >
+              <img src={photos[1].src} alt="" className="w-full h-auto grayscale" />
+            </motion.div>
+            <motion.div
+              className="col-span-2 -mt-4"
+              style={{ opacity: photos[2].opacity }}
+            >
+              <img src={photos[2].src} alt="" className="w-full h-auto grayscale" />
+            </motion.div>
+          </div>
         </div>
       </div>
 
