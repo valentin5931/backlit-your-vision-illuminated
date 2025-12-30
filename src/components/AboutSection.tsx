@@ -69,19 +69,28 @@ const AboutSection = () => {
           <div className="grid grid-cols-2 gap-2 w-48 md:w-64">
             <motion.div
               className="col-span-1"
-              style={{ opacity: photos[0].opacity }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8, delay: 0 }}
             >
               <img src={photos[0].src} alt="" className="w-full h-auto grayscale" />
             </motion.div>
             <motion.div
               className="col-span-1 mt-8"
-              style={{ opacity: photos[1].opacity }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
               <img src={photos[1].src} alt="" className="w-full h-auto grayscale" />
             </motion.div>
             <motion.div
               className="col-span-2 -mt-4"
-              style={{ opacity: photos[2].opacity }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
               <img src={photos[2].src} alt="" className="w-full h-auto grayscale" />
             </motion.div>
