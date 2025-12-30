@@ -65,9 +65,12 @@ const AboutSection = () => {
           ))}
         </div>
 
-        {/* Sticky photos container - stays fixed while text scrolls */}
+        {/* Empty space 1/4 */}
+        <div className="hidden md:block md:w-1/4"></div>
+
+        {/* Sticky photos container - right half (1/2) */}
         <div className="hidden md:block md:w-1/2">
-          <div className="sticky top-1/2 -translate-y-1/2 flex justify-end pr-6 lg:pr-12">
+          <div className="sticky top-1/2 -translate-y-1/2 flex justify-center">
             <div className="grid grid-cols-2 gap-2 w-48 md:w-64">
               <motion.div
                 className="col-span-1"
