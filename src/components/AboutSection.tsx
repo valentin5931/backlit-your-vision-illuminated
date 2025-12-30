@@ -15,10 +15,10 @@ const AboutSection = () => {
     offset: ["start end", "end start"]
   });
 
-  // Transform for floating images
-  const image1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 0.7]);
-  const image2Opacity = useTransform(scrollYProgress, [0.25, 0.4], [0, 0.7]);
-  const image3Opacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 0.7]);
+  // Transform for floating images - staggered appearance
+  const image1Opacity = useTransform(scrollYProgress, [0.15, 0.25], [0, 1]);
+  const image2Opacity = useTransform(scrollYProgress, [0.30, 0.40], [0, 1]);
+  const image3Opacity = useTransform(scrollYProgress, [0.45, 0.55], [0, 1]);
 
   const photos = [
     { src: photoCamera, opacity: image1Opacity },
