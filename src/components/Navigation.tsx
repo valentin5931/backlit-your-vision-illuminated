@@ -20,7 +20,7 @@ const Navigation = () => {
       <div className="flex items-center justify-between">
         <button
           onClick={() => scrollTo('about')}
-          className="nav-link text-sm font-body tracking-wide"
+          className="nav-link text-sm font-body tracking-wide text-foreground/60 hover:text-foreground transition-colors"
         >
           {t.nav.about}
         </button>
@@ -29,7 +29,7 @@ const Navigation = () => {
 
         <button
           onClick={() => scrollTo('contact')}
-          className="nav-link text-sm font-body tracking-wide"
+          className="nav-link text-sm font-body tracking-wide text-foreground/60 hover:text-foreground transition-colors"
         >
           {t.nav.contact}
         </button>
