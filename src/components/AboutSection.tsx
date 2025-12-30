@@ -46,7 +46,7 @@ const AboutSection = () => {
       {/* Content wrapper with sticky photos */}
       <div className="relative mt-[40vh] flex flex-col md:flex-row">
         {/* Magazine-style text layout - narrow left column */}
-        <div className="w-full md:w-1/2 space-y-6">
+        <div className="w-full md:w-1/4 space-y-6">
           {t.about.blocks.map((block, index) => (
             <motion.p
               key={index}
