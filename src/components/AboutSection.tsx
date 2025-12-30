@@ -1,10 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { Gamepad2 } from 'lucide-react';
-import production1 from '@/assets/production-1.jpg';
-import production2 from '@/assets/production-2.jpg';
-import production3 from '@/assets/production-3.jpg';
+import { Gamepad2, Mail } from 'lucide-react';
 
 const AboutSection = () => {
   const { t, language } = useLanguage();
@@ -15,20 +12,17 @@ const AboutSection = () => {
     offset: ["start end", "end start"]
   });
 
-  // Transform for floating images
-  const image1Y = useTransform(scrollYProgress, [0, 0.3], [100, 0]);
-  const image1Opacity = useTransform(scrollYProgress, [0.05, 0.2], [0, 1]);
-  
-  const image2Y = useTransform(scrollYProgress, [0.2, 0.5], [100, 0]);
-  const image2Opacity = useTransform(scrollYProgress, [0.25, 0.4], [0, 1]);
-  
-  const image3Y = useTransform(scrollYProgress, [0.4, 0.7], [100, 0]);
-  const image3Opacity = useTransform(scrollYProgress, [0.45, 0.6], [0, 1]);
+  // Transform for floating placeholder images
+  const image1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 0.6]);
+  const image2Opacity = useTransform(scrollYProgress, [0.25, 0.4], [0, 0.6]);
+  const image3Opacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 0.6]);
+  const image4Opacity = useTransform(scrollYProgress, [0.55, 0.7], [0, 0.6]);
 
-  const images = [
-    { src: production1, y: image1Y, opacity: image1Opacity, offset: 'top-[20%]' },
-    { src: production2, y: image2Y, opacity: image2Opacity, offset: 'top-[45%]' },
-    { src: production3, y: image3Y, opacity: image3Opacity, offset: 'top-[70%]' },
+  const placeholders = [
+    { opacity: image1Opacity, size: 'w-32 h-24', position: 'bottom-48 right-8' },
+    { opacity: image2Opacity, size: 'w-40 h-28', position: 'bottom-20 right-16' },
+    { opacity: image3Opacity, size: 'w-36 h-48', position: 'bottom-32 right-56' },
+    { opacity: image4Opacity, size: 'w-28 h-36', position: 'bottom-8 right-4' },
   ];
 
   return (
@@ -69,34 +63,36 @@ const AboutSection = () => {
           ))}
         </div>
 
-        {/* Floating images on the right */}
-        <div className="hidden lg:block fixed right-12 bottom-12 w-56 pointer-events-none">
-          {images.map((img, index) => (
+        {/* Fixed floating placeholder images in bottom right */}
+        <div className="hidden lg:block fixed right-0 bottom-0 w-96 h-96 pointer-events-none">
+          {placeholders.map((placeholder, index) => (
             <motion.div
               key={index}
-              className="absolute right-0 bottom-0 w-48"
-              style={{ 
-                y: img.y, 
-                opacity: img.opacity,
-                transform: `translateY(${index * -120}px)`
-              }}
+              className={`absolute ${placeholder.position} ${placeholder.size} bg-foreground/10 border border-foreground/20`}
+              style={{ opacity: placeholder.opacity }}
             >
-              <img 
-                src={img.src} 
-                alt="" 
-                className="w-full h-auto grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500 pointer-events-auto"
-              />
+              <div className="w-full h-full flex items-center justify-center text-foreground/20 text-xs font-body">
+                photo {index + 1}
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Footer / Game Link */}
+      {/* Footer */}
       <div className="mt-32 pt-12 border-t border-foreground/10">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <p className="text-xs text-foreground/30 font-body">
             © {new Date().getFullYear()} BACKLIT
           </p>
+          
+          <a 
+            href="mailto:valentin@backlit-prod.com"
+            className="flex items-center gap-2 text-foreground/40 hover:text-foreground/70 transition-colors group"
+          >
+            <Mail className="w-4 h-4" />
+            <span className="text-xs font-body tracking-wide">contact</span>
+          </a>
           
           <a 
             href="https://valentinwattelet.com" 

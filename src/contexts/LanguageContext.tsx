@@ -31,7 +31,7 @@ const translations: Record<Language, Translations> = {
       contact: 'contact',
     },
     hero: {
-      tagline: 'nous construisons des histoires dans le monde réel',
+      tagline: 'we build stories in the real world',
       production: 'PRODUCTION',
       creative: 'CRÉATIVE',
       executive: 'EXÉCUTIVE',
