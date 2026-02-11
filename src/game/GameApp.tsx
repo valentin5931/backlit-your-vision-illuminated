@@ -168,14 +168,23 @@ const GameApp: React.FC = () => {
                          className="text-[#0f380f] text-xs font-bold border-2 border-[#0f380f] py-3 px-2 hover:bg-[#0f380f] hover:text-[#f0f8f0] transition-colors flex items-center justify-center gap-2 pointer-events-auto"
                          style={{ pointerEvents: 'auto' }}
                        >
-                         <span>▶</span> PLAY GAME
-                       </button>
-                       <button
-                          onClick={goHome}
-                          className="text-[#0f380f] text-xs font-bold border-2 border-[#0f380f] py-3 px-2 hover:bg-[#0f380f] hover:text-[#f0f8f0] transition-colors flex items-center justify-center gap-2 pointer-events-auto"
-                          style={{ pointerEvents: 'auto' }}
-                        >
-                          <span>▶</span> BACK TO BACKLIT
+                          <span>▶</span> PLAY GAME
+                        </button>
+                        <a
+                           href="/cv.html"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="text-[#0f380f] text-xs font-bold border-2 border-[#0f380f] py-3 px-2 hover:bg-[#0f380f] hover:text-[#f0f8f0] transition-colors flex items-center justify-center gap-2 pointer-events-auto"
+                           style={{ pointerEvents: 'auto' }}
+                         >
+                           <span>▶</span> SEE VALENTIN'S RESUME
+                         </a>
+                        <button
+                           onClick={goHome}
+                           className="text-[#0f380f] text-xs font-bold border-2 border-[#0f380f] py-3 px-2 hover:bg-[#0f380f] hover:text-[#f0f8f0] transition-colors flex items-center justify-center gap-2 pointer-events-auto"
+                           style={{ pointerEvents: 'auto' }}
+                         >
+                           <span>▶</span> BACK TO BACKLIT
                         </button>
                    </div>
                  </div>
