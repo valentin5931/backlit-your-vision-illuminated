@@ -33,7 +33,8 @@ const Menu: React.FC<MenuProps> = ({ resume, onClose, onRestart, onGoToResume })
   const menuItems: { label: string; action: () => void; subtitle?: string }[] = [
     { label: 'SKILLS', action: () => setTab('skills') },
     { label: 'TRAINER CARD', action: () => setTab('contact') },
-    { label: 'VISIT WEBSITE', action: onGoToResume },
+    { label: 'VISIT BACKLIT WEBSITE', action: () => window.open('https://backlit.fr', '_blank') },
+    { label: "SEE VALENTIN'S RESUME", action: () => window.open('/cv.html', '_blank') },
     { label: 'RESUME GAME', action: onClose },
     { label: 'RESTART', action: onRestart }
   ];
