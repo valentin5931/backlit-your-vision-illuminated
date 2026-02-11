@@ -113,7 +113,7 @@ const AboutSection = () => {
 
 
           <a 
-            href="/game"
+            href="/#/game"
             className="flex items-center gap-3 text-foreground/40 hover:text-foreground/70 transition-colors group"
           >
             <Gamepad2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
