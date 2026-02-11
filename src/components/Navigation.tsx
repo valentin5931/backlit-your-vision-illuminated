@@ -34,7 +34,7 @@ const Navigation = () => {
         <LanguageSwitch />
 
         <a
-          href="mailto:valentin@backlit-prod.com"
+          href="mailto:valentin@backlit.fr"
           className="nav-link text-sm font-body tracking-wide text-foreground/60 hover:text-foreground transition-colors"
         >
           {t.nav.contact}

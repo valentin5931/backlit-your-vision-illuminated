@@ -103,7 +103,7 @@ const AboutSection = () => {
           </p>
           
           <a 
-            href="mailto:valentin@backlit-prod.com"
+            href="mailto:valentin@backlit.fr"
             className="flex items-center gap-2 text-foreground/40 hover:text-foreground/70 transition-colors group"
           >
             <Mail className="w-4 h-4" />
@@ -118,7 +118,7 @@ const AboutSection = () => {
           >
             <Gamepad2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
             <span className="text-xs font-body tracking-wide">
-              {language === 'fr' ? 'jouer aux aventures de Valentin' : "play Valentin's adventures"}
+              {language === 'fr' ? 'en savoir plus sur Valentin' : "learn more about Valentin"}
             </span>
           </a>
         </div>
