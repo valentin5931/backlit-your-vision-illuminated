@@ -109,6 +109,15 @@ const AboutSection = () => {
             <Mail className="w-4 h-4" />
             <span className="text-xs font-body tracking-wide">contact</span>
           </a>
+
+          <a 
+            href="/cv.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-foreground/40 hover:text-foreground/70 transition-colors group"
+          >
+            <span className="text-xs font-body tracking-wide">see valentin's resume</span>
+          </a>
           
           <a 
             href="/game"
