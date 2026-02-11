@@ -102,34 +102,23 @@ const AboutSection = () => {
             © {new Date().getFullYear()} BACKLIT
           </p>
           
-          <div className="flex items-center gap-6">
-            <a 
-              href="/game"
-              className="flex items-center gap-2 text-foreground/40 hover:text-foreground/70 transition-colors group"
-            >
-              <Gamepad2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
-              <span className="text-xs font-body tracking-wide">play game</span>
-            </a>
-
-            <a 
-              href="https://backlit.fr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground/40 hover:text-foreground/70 transition-colors group"
-            >
-              <span className="text-xs font-body tracking-wide">visit backlit website</span>
-            </a>
-
-            <a 
-              href="/cv.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground/40 hover:text-foreground/70 transition-colors group"
-            >
-              <Mail className="w-4 h-4" />
-              <span className="text-xs font-body tracking-wide">see valentin's resume</span>
-            </a>
-          </div>
+          <a 
+            href="mailto:valentin@backlit.fr"
+            className="flex items-center gap-2 text-foreground/40 hover:text-foreground/70 transition-colors group"
+          >
+            <Mail className="w-4 h-4" />
+            <span className="text-xs font-body tracking-wide">contact</span>
+          </a>
+          
+          <a 
+            href="/game"
+            className="flex items-center gap-3 text-foreground/40 hover:text-foreground/70 transition-colors group"
+          >
+            <Gamepad2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
+            <span className="text-xs font-body tracking-wide">
+              {language === 'fr' ? 'en savoir plus sur Valentin' : "learn more about Valentin"}
+            </span>
+          </a>
         </div>
       </div>
     </section>
