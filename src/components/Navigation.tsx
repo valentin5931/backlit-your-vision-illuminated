@@ -31,15 +31,6 @@ const Navigation = () => {
           {t.nav.about}
         </button>
 
-        <a
-          href="/cv.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="nav-link text-sm font-body tracking-wide text-foreground/60 hover:text-foreground transition-colors"
-        >
-          see valentin's resume
-        </a>
-
         <LanguageSwitch />
 
         <a
