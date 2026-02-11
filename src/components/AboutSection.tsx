@@ -121,7 +121,9 @@ const AboutSection = () => {
             </a>
 
             <a 
-              href="mailto:valentin@backlit.fr"
+              href="/cv.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 text-foreground/40 hover:text-foreground/70 transition-colors group"
             >
               <Mail className="w-4 h-4" />
